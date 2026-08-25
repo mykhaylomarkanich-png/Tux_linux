@@ -34,8 +34,8 @@ const RESPONSES = {
 };
 
 const PHOTO_RESPONSES = {
-  'терри девис': 'Terry_Davis.jpg',
-  'tuz': 'tuz.jpg',
+  'терри девис': 'tuz.jpg',
+  
   'тукс': 'tux.jpg',
 };
 
