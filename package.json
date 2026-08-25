@@ -1,0 +1,14 @@
+{
+  "name": "tux-bot",
+  "version": "1.0.0",
+  "description": "Open Source Tux Telegram Bot",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.16.3"
+  }
+}
+
