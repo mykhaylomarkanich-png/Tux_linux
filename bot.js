@@ -3,13 +3,23 @@ import fs from 'fs';
 import http from 'http';
 
 const PORT = process.env.PORT || 3000;
-http.createServer((req, res) => res.end('Bot is alive!')).listen(PORT);
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is alive!');
+}).listen(PORT, () => {
+  console.log(`Fake web server listening on port ${PORT}`);
+});
 
-try { (await import('dotenv')).config(); } catch (e) {}
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+async function main() {
+  try {
+    const dotenv = await import('dotenv');
+    dotenv.config();
+  } catch (e) {}
 
-const RESPONSES = {
+  const bot = new Telegraf(process.env.BOT_TOKEN);
+
+ const RESPONSES = {
   'tux': 'hello',
   '/sudo chmode += telegram': 'право доступа успішно надано ',
   'windows': 'ти подзалупино пользуєшся віндовс! став лінукс лінукс лінукс ',
@@ -114,3 +124,9 @@ bot.launch().then(() => {
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
+  
+  bot.launch();
+}
+
+main();
