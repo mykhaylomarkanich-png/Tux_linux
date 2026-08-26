@@ -39,9 +39,9 @@ const RESPONSES = {
 };
 
 const PHOTO_RESPONSES = {
-  'терри девис': 'Terry_Davis.jpg',
-  'tuz': 'tuz.jpg',
-  'тукс': 'tux.jpe',
+  'терри девис': 'tuz.jpg',
+
+  'тукс': 'tux.jpg',
 };
 
 const TUX_ART = `
