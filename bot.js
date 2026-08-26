@@ -2,7 +2,6 @@ import { Telegraf } from 'telegraf';
 import fs from 'fs';
 import http from 'http';
 
-// Фіктивний веб-сервер для Render
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => res.end('Bot is alive!')).listen(PORT);
 
@@ -44,6 +43,10 @@ const PHOTO_RESPONSES = {
   'тукс': 'tux.jpg',
 };
 
+const VIDEO_RESPONSES = {
+  'android in the bios': 'android_in_the_bios.mp4',
+};
+
 const TUX_ART = `
 ████████╗██╗   ██╗██╗  ██╗███████╗
 ╚══██╔══╝██║   ██║╚██╗██╔╝██╔════╝
@@ -66,6 +69,16 @@ bot.on('text', async (ctx) => {
 
   if (text.includes('пінгвін')) {
     return ctx.reply(`<pre>${TUX_ART}</pre>`, { parse_mode: 'HTML' });
+  }
+
+  for (const [key, filePath] of Object.entries(VIDEO_RESPONSES)) {
+    if (text.includes(key)) {
+      if (fs.existsSync(filePath)) {
+        return ctx.replyWithVideo({ source: filePath });
+      } else {
+        return ctx.reply(`[Помилка]: Відео ${filePath} не знайдено на сервері.`);
+      }
+    }
   }
 
   for (const [key, filePath] of Object.entries(PHOTO_RESPONSES)) {
