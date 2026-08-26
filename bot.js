@@ -39,7 +39,6 @@ const RESPONSES = {
 
 const PHOTO_RESPONSES = {
   'терри девис': 'tuz.jpg',
-
   'тукс': 'tux.jpg',
 };
 
@@ -64,8 +63,37 @@ const TUX_ART = `
    ___)=(___/
 `;
 
+const HELP_MESSAGE = `
+<b>🐧 Список доступних команд та тригерів Tux Bot:</b>
+
+<b>📜 Текстові фрази-тригери:</b>
+• tux, windows, вінда, віндовс, вікно
+• лінукс, опен сурс, пінг, пінгвін
+• васька, василь, володьо
+• встає, встав, привіт, нет, нахуй
+• пизда, хуй, кнш, щось, астрольфо, камера
+
+<b>⚙️ Команди:</b>
+• /help або /start — показати цей список
+• /sudo chmode += telegram — надати права
+• /colse — повідомлення про ремонт
+• /update — повідомлення про оновлення
+
+<b>🖼️ Фото та Відео:</b>
+• <b>тукс</b>, <b>терри девис</b> — надіслати фото
+• <b>android in the bios</b> — надіслати відео
+`;
+
+bot.command(['start', 'help'], (ctx) => {
+  return ctx.reply(HELP_MESSAGE, { parse_mode: 'HTML' });
+});
+
 bot.on('text', async (ctx) => {
   const text = ctx.message.text.toLowerCase();
+
+  if (text === 'команди' || text === 'help') {
+    return ctx.reply(HELP_MESSAGE, { parse_mode: 'HTML' });
+  }
 
   if (text.includes('пінгвін')) {
     return ctx.reply(`<pre>${TUX_ART}</pre>`, { parse_mode: 'HTML' });
