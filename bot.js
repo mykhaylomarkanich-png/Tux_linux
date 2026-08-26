@@ -1,5 +1,10 @@
 import { Telegraf } from 'telegraf';
 import fs from 'fs';
+import http from 'http';
+
+// Фіктивний веб-сервер для Render
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => res.end('Bot is alive!')).listen(PORT);
 
 try { (await import('dotenv')).config(); } catch (e) {}
 
@@ -34,9 +39,9 @@ const RESPONSES = {
 };
 
 const PHOTO_RESPONSES = {
-  'терри девис': 'tuz.jpg',
-  
-  'тукс': 'tux.jpg',
+  'терри девис': 'Terry_Davis.jpg',
+  'tuz': 'tuz.jpg',
+  'тукс': 'tux.jpe',
 };
 
 const TUX_ART = `
